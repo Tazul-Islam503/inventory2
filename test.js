@@ -1,5 +1,5 @@
 // আপনার Google Apps Script Web App URL টি এখানে পেস্ট করুন
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzO1nVsPAz800YIX5iQHxs4XPST_PhfkxPA9tj3qUZtS9VWCaGsoShqC9lchK7eBiU/exec"; 
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbypeHv_fDKrJPyEyajvb7yz5SI19LPlhxSZjxAAwSUoBgcFmf6U0IodgWgj9tdOphck/exec"; 
 
 // আপনার ডেটা যা আপনি পাঠাতে চাচ্ছেন (একাধিক রো সহ 2D অ্যারে)
 const myData = [
