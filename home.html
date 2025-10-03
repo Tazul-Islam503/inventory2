@@ -208,6 +208,19 @@ iframe{
 
 </div><!------parent div-------->
 <script>
+    //--------------------Secured from anonymus access--------------------------------
+const userName = localStorage.getItem('transfer_userName');
+const userId = localStorage.getItem('transfer_userId');
+
+if(!userName){
+window.location.href="index.html"
+    return;
+}
+// 2. (Optional but recommended) Clear the storage after use
+localStorage.removeItem('transfer_userName');
+localStorage.removeItem('transfer_userId');
+  //--------------------Secured from anonymus access--------------------------------
+    
 var buttonDiv = document.getElementById("button_div")
  buttonDiv.style.height=window.innerHeight + 'px';
 var iframeDiv = document.getElementById("iframe_div")
@@ -737,3 +750,4 @@ iframeDiv.appendChild(iframe)
 </body>
 
 </html>
+
