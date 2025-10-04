@@ -96,7 +96,7 @@ iframe{
     <div id="child-buttons">
         <button id="child-button" onClick="erpMrr()">Purchase-receive</button>
         <button id="child-button" onClick = "returnToVendor()">Mrr Return</button>
-       <button id="child-button">Mrr reports</button>
+       <button id="child-button" onClick="mrrReports()">Mrr reports</button>
         <button id="child-button" onClick="mrrUpdate()">Update/Delete</button>
        
     </div>
@@ -370,8 +370,23 @@ var iframe =document.createElement("iframe")
 iframe.src = "https://script.google.com/macros/s/AKfycbyKB8ww4_sKKBQic7PF8y7-yXVjxCMdW5ebTPSpWIzNP1LQ5_X_tgbCfU-6DiXf3W4yOg/exec";
 iframeDiv.appendChild(iframe)
 }
+//-----------------------Mrr reports--------------------------------------------
+    function mrrReports(){ 
+const iframs = document.querySelectorAll('iframe');
+//console.log(iframs.length)
+if(iframs.length>0){
+iframs.forEach(function(frame){
+frame.remove();
+})
 
-
+}
+document.title = 'MRR Reports';
+iframeDiv.style.height = window.innerHeight + 'px';
+var iframe =document.createElement("iframe")
+iframe.src = "https://script.google.com/macros/s/AKfycbwxOtHH1_c6jQAJSwHCqcJgYemC6-OSbbdWYBAQ6MdADz5mZEqc_vs_bIJa7sKBhhfN/exec";
+iframeDiv.appendChild(iframe)
+}
+    }
 //------------------MRR Update / Delete---------------------------
 function mrrUpdate(){
 
@@ -749,5 +764,6 @@ iframeDiv.appendChild(iframe)
 </body>
 
 </html>
+
 
 
