@@ -113,8 +113,8 @@ iframe{
 <div id="main-button-container">
     <button id="main-button">ERP Stock Issue</button>
     <div id="child-buttons">
-        <button id="child-button" onClick ="erpIssueform()">Issue to Equipment</button>
-        <button id="child-button" onClick="erpworshopIssueform()">Issue to workshop</button>
+        <button id="child-button" onClick ="erpIssueform()">ERP ISSUE</button>
+        <button id="child-button" onClick="erpworshopIssueform()" disabled="true">Issue to workshop</button>
         <button id="child-button">Issue reports</button>
         <button id="child-button" onClick = "issueReturn()">Issue Return</button>
         <button id="child-button" onClick ="issueUpdate()">Update/Delete</button>
@@ -123,8 +123,8 @@ iframe{
 <div id="main-button-container">
     <button id="main-button">FOC Stock Issue</button>
     <div id="child-buttons">
-        <button id="child-button" onClick = "focEquipIssue()">Issue to workshop</button>
-        <button id="child-button" onClick ="focworkshopIssue()">Issue to Equipment</button>
+        <button id="child-button" onClick = "focEquipIssue()">FOC Issue</button>
+        <button id="child-button" onClick ="focworkshopIssue()" disabled="true">Issue to Equipment</button>
         <button id="child-button">Issue reports</button>
         <button id="child-button">Update/Delete</button>
     </div>
@@ -463,6 +463,7 @@ iframe.src = "https://script.google.com/macros/s/AKfycbxySi3m6LWeQZ9ZrBQh8qi3l4e
 iframeDiv.appendChild(iframe)
 }
 //------------------ERP Issue form---------------------------
+/*   
 function erpworshopIssueform(){
 
 const iframs = document.querySelectorAll('iframe');
@@ -479,7 +480,7 @@ var iframe =document.createElement("iframe")
 iframe.src = "https://script.google.com/macros/s/AKfycbxq1-qOH6i0-4nCIAYPB5q51iZZrbwvhXn4jkhWFdOirXtfs_eC5InrG0Go9aPtnQRN/exec";
 iframeDiv.appendChild(iframe)
 }
-
+*/
 //------------------Issue Return---------------------------
 function issueReturn(){
 
@@ -527,7 +528,7 @@ frame.remove();
 })
 
 }
-document.title = 'FOC Equip Issue form';
+document.title = 'FOC Issue form';
 iframeDiv.style.height = window.innerHeight + 'px';
 var iframe =document.createElement("iframe")
 iframe.src = "https://script.google.com/macros/s/AKfycby_mk3O_v-i37zsZwuRbV7jAOFDCeR2VkJNgCrgHEt2TmzUoNS1mmcJHZYsZUxcTPBR/exec";
@@ -766,6 +767,7 @@ iframeDiv.appendChild(iframe)
 </body>
 
 </html>
+
 
 
 
