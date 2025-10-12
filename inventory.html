@@ -89,7 +89,7 @@ li:hover{background-color:#bfecf5;}
 
 <button class="accordion">Stock Transfer +</button>
 <div class="panel">
-<li onClick ="erpTransfer()">Erp Transfer</li>
+<li onClick ="stockTransfer()">Erp Transfer</li>
 <li onClick ="focTransfer()">Zero Value Transfer</li>
 <li>Transfer reports</li>
 <li>ERP transfer update</li>
@@ -98,7 +98,7 @@ li:hover{background-color:#bfecf5;}
 
 <button class="accordion">Transfer Receive +</button>
 <div class="panel">
-<li onClick = "erptrnReceive()">ERP Receive</li>
+<li onClick = "trnReceive()">ERP Receive</li>
 <li onClick = "foctrnReceive()">Zero Value Receive</li>
 <li>Received reports</li>
 <li>ERP transfer update</li>
@@ -546,7 +546,7 @@ iframe.src = "https://script.google.com/macros/s/AKfycbyzTB9xAEo2_6vetzRod4HYRkc
 iframeDiv.appendChild(iframe)
 }
 //------------------ERP Transfer receive--------------------------
-function erptrnReceive(){
+function trnReceive(){
 
 const iframs = document.querySelectorAll('iframe');
 //console.log(iframs.length)
@@ -556,14 +556,14 @@ frame.remove();
 })
 
 }
-document.title = 'ERP TRN RECEIVE';
+document.title = 'TRN RECEIVE';
 iframeDiv.style.height = window.innerHeight + 'px';
 var iframe =document.createElement("iframe")
 iframe.src = "https://script.google.com/macros/s/AKfycbyAdim64IdS9L98G4VouZyb9ve8P9bcXhLsimT-voKs-N5Omjz5pk5MgZyHmrwE6a4U/exec";
 iframeDiv.appendChild(iframe)
 }
 //------------------ERP Transfer--------------------------
-function erpTransfer(){
+function stockTransfer(){
 
 const iframs = document.querySelectorAll('iframe');
 //console.log(iframs.length)
@@ -573,7 +573,7 @@ frame.remove();
 })
 
 }
-document.title = 'ERP TRNSFER';
+document.title = ' STOCK TRNSFER';
 iframeDiv.style.height = window.innerHeight + 'px';
 var iframe =document.createElement("iframe")
 iframe.src = "https://script.google.com/macros/s/AKfycbyhMAz482c3vAOKmyHyy9EUAjH1tA2Njw7Sin2l-OsF2_Suzo-0L1htdKOF7b-AO_KM8w/exec";
@@ -816,3 +816,4 @@ iframeDiv.appendChild(iframe)
 
 </body>
 </html>
+
