@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory Login</title>
+    <base target="_top">
+    <style>
+      div{width:60%; margin-left:20%; margin-top:10%; border:1px solid #c5d1c7; padding-bottom:20px;}
+      input{width:80%; margin-left:10%; outline:none; autocomplete:off; height:25px; text-align:center;
+       border:0.2px solid:#c5d1c7;}
+      #role{margin-bottom:40px; width:80%; margin-left:10%; outline:none; height:25px; text-align:center;
+       border:0.2px solid:#c5d1c7;}
+      #userName, #pass{margin-bottom:15px;}
+      p{text-align:center; color:blue; font-weight:bold; font-size:22px;}
+      #login{cursor:pointer; background-color:blue; border:none; font-size:14px; font-weight:bold;}
+      #status {text-align:center; color:blue; height:25px; font-size:16px;}
+    </style>
+  </head>
+  <body>
+    <div>
+      <p id = "fname"> Login form</p>
+<select id="role">
+  <option>ADMIN</option>
+   <option>CREATOR</option>
+    <option>AUDIT</option>
+  </select>
+<input type ="text" id="userName" placeholder="User name" autocomplete="off" required>
+<input type ="password" id="pass" placeholder="Password" autocomplete="off" required>
+<input type ="submit" id="login" value ="Login" onClick = "login()">
+    </div>
+    <p id = "status"></p>
+    
+  <script>
+function login(){
+var role =document.getElementById("role")
+var user = document.getElementById("userName")
+var pass = document.getElementById("pass")
+var result = document.getElementById("status")
+if(user.value =="" || pass.value==""){
+result.innerHTML="Fill the blank"
+result.style.color="red"
+return
+}
+localStorage.setItem('role', role.value);
+localStorage.setItem('userName', user.value);
+localStorage.setItem('userPin', pass.value);
+
+var result = document.getElementById("status")
+result.innerHTML="Checking...."
+result.style.color="blue"
+user.value=""
+pass.value=""
+postData()
+}
+
+//----------------------------------------------------------------------------------
+function postData() {
+  var result = document.getElementById("status")
+  const URL = "https://script.google.com/macros/s/AKfycbw6qF6rD1HqeYJtdQ8guwWOUA20qd8G2XISEOraNI0dBU_AkeOBdpqjDLHwEO3voXEi/exec";
+  // localStorage থেকে ডাটা নেওয়া
+   const storedRole = localStorage.getItem("role");
+  const storedUser = localStorage.getItem("userName");
+  const storedPin = localStorage.getItem("userPin");
+
+  if (!storedRole || !storedUser || !storedPin) {
+    console.log("No data in localStorage");
+    return;
+  }
+
+  // ডাটা পাঠানোর জন্য তৈরি করা
+  const users = {
+    role: storedRole,
+    userId: storedUser,
+    pin: storedPin
+  };
+
+  fetch(URL, { 
+               method: "POST",
+               mode:"no-cors",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(users)
+         })
+      .then(function(){
+       getSheetData()
+        //window.open(URL, "_blank");
+   })
+        
+
+      .catch(error =>{
+        result.innerHTML="Error: "+error.message;
+        result.style.color="red"
+})
+}
+//------------------------------------------------------------------------
+async function getSheetData() {
+var result = document.getElementById("status")
+             result.style.color="green"
+  const URL = "https://script.google.com/macros/s/AKfycbw6qF6rD1HqeYJtdQ8guwWOUA20qd8G2XISEOraNI0dBU_AkeOBdpqjDLHwEO3voXEi/exec";
+  
+      try {
+        const response = await fetch(URL);
+        const data = await response.json();
+         
+      if(data.length==1){
+     result.innerHTML="valid User!"
+     result.style.color="blue"
+      window.location.href="inventory.html"
+
+}else{
+
+result.innerHTML="User "+data +"!"
+result.style.color="red"
+return;
+}   
+      } catch (error){
+        result.innerHTML="Error: " +error.message;
+         result.style.color="red"
+      }
+    }
+
+</script>
+  </body>
+
+</html>
+
+
+
+
+
+
