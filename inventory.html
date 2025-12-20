@@ -191,7 +191,7 @@ window.addEventListener('storage', (event) => {
     if (event.key === 'signedOut') {
         if (event.newValue) {
             alert('You have been signed out from another tab.');
-            window.location.replacy('index.html'); 
+            window.location.replace('index.html'); 
         }
     }
 });
@@ -200,9 +200,10 @@ function signOut() {
     localStorage.setItem('signedOut', Date.now()); 
     window.location.replace('index.html'); 
 //---clear localStorage-----------------------
-localStorage.removeItem('storedRole');
-localStorage.removeItem('storedUser');
-localStorage.removeItem('storedPin');
+  localStorage.clear();
+//localStorage.removeItem('storedRole');
+//localStorage.removeItem('storedUser');
+//localStorage.removeItem('storedPin');
 }
 
 //=====================================Button section designed==========================
@@ -999,5 +1000,6 @@ iframeDiv.appendChild(iframe)
 
 </body>
 </html>
+
 
 
