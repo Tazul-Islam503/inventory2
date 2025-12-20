@@ -182,7 +182,7 @@ li:hover{background-color:#bfecf5;}
   const storedUser = localStorage.getItem("userName");
   const storedPin = localStorage.getItem("userPin");
 if(!storedUser || !storedPin){
-window.location.href="index.html"
+window.location.replace("index.html")
 }
   
 //-------------------------------------------
@@ -191,14 +191,14 @@ window.addEventListener('storage', (event) => {
     if (event.key === 'signedOut') {
         if (event.newValue) {
             alert('You have been signed out from another tab.');
-            window.location.href = 'index.html'; 
+            window.location.replacy('index.html'); 
         }
     }
 });
 
 function signOut() {
     localStorage.setItem('signedOut', Date.now()); 
-    window.location.href = 'index.html'; 
+    window.location.replace('index.html'); 
 //---clear localStorage-----------------------
 localStorage.removeItem('storedRole');
 localStorage.removeItem('storedUser');
@@ -999,4 +999,5 @@ iframeDiv.appendChild(iframe)
 
 </body>
 </html>
+
 
