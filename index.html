@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      
+      div{width:40%; margin-left:30%; margin-top:10%; border:1px solid #c5d1c7; padding-bottom:20px;}
+      input{width:80%; margin-left:10%; outline:none; autocomplete:off; height:25px; text-align:center;
+       border:0.2px solid:#c5d1c7;}
+      #role{margin-bottom:40px; width:80%; margin-left:10%; outline:none; height:25px; text-align:center;
+       border:0.2px solid:#c5d1c7;}
+      #userName, #pass{margin-bottom:15px;}
+      p{text-align:center; color:blue; font-weight:bold; font-size:22px;}
+      #login{cursor:pointer; background-color:#434E78; border:none; font-size:14px; font-weight:bold; color:#FBEFEF;}
+      #status {text-align:center; color:blue; height:25px; font-size:16px;}
+      
+       @media only screen and(min-width: 200px) and (max-width: 800px){
+       div{width:80%; margin-top:40%;margin-left:10%;}
+        input{width:90%; margin-left:5%; height:45px; font-size:35px; font-weight:bold;}
+         #userName, #pass{margin-bottom:50px;}
+      p{text-align:center; color:#434E78; font-weight:bold; font-size:35px;}
+      #role{
+        margin-bottom:50px; width:90%; margin-left:5%; outline:none; height:50px; text-align:center;
+       border:0.2px solid:#c5d1c7; font-size:35px; font-wight:bold;
+           }
+       #login{cursor:pointer; background-color:#434E78; border:none; font-size:30px; font-weight:bold; color:#FBEFEF; height:40px;}
+          body{background-color:#F9E7B2;}
+       }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p id = "fname"> Login form</p>
+<select id="role">
+  <option>ADMIN</option>
+   <option>CREATOR</option>
+    <option>AUDIT</option>
+  </select>
+<input type ="text" id="userName" placeholder="User name" autocomplete="off" required>
+<input type ="password" id="pass" placeholder="Password" autocomplete="off" required>
+<input type ="submit" id="login" value ="Login" onClick = "login()">
+    </div>
+    <p id = "status"></p>
+    
+  <script>
+function login(){
+var role =document.getElementById("role")
+var user = document.getElementById("userName")
+var pass = document.getElementById("pass")
+var result = document.getElementById("status")
+if(user.value =="" || pass.value==""){
+result.innerHTML="Fill the blank"
+result.style.color="red"
+return
+}
+
+var result = document.getElementById("status")
+result.innerHTML="Checking...."
+result.style.color="blue"
+  var result = document.getElementById("status")
+  const URL = "https://script.google.com/macros/s/AKfycbw6qF6rD1HqeYJtdQ8guwWOUA20qd8G2XISEOraNI0dBU_AkeOBdpqjDLHwEO3voXEi/exec"
+
+  // ডাটা পাঠানোর জন্য তৈরি করা
+  const users = {
+    role: role.value,
+    userId:user.value,
+    pin: pass.value
+  };
+
+  fetch(URL, { 
+               method: "POST",
+               mode:"no-cors",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(users)
+         })
+      .then(function(){
+       getSheetData()
+        //window.open(URL, "_blank");
+   })
+   .catch(error =>{
+   result.innerHTML="Error: "+error.message;
+   result.style.color="red"
+})
+}
+//------------------------------------------------------------------------
+async function getSheetData() {
+var role =document.getElementById("role")
+var user = document.getElementById("userName")
+var pass = document.getElementById("pass")
+var result = document.getElementById("status")
+            
+const URL = "https://script.google.com/macros/s/AKfycbw6qF6rD1HqeYJtdQ8guwWOUA20qd8G2XISEOraNI0dBU_AkeOBdpqjDLHwEO3voXEi/exec";
+  
+      try {
+         result.style.color="green"
+        const response = await fetch(URL);
+        const data = await response.json();
+if(data=="Invalid"){
+result.innerHTML="User not found!"
+result.style.color="red"
+role.value=""
+user.value=""
+pass.value=""
+return;
+}else{
+         result.style.color="blue"
+        result.innerHTML="Welcome to Inventory!"
+         window.location.replace("inventory.html")
+        data.forEach(f=>{
+         localStorage.setItem('role', f.Role);
+         localStorage.setItem('userName', f.Name);
+         localStorage.setItem('userPin', f.Password);
+})
+         
+    role.value=""
+    user.value=""
+   pass.value=""
+}
+} catch (error){
+     result.innerHTML="Error: " +error.message;
+      result.style.color="red"
+  }
+}
+</script>
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
